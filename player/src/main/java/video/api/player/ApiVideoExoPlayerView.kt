@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import video.api.player.databinding.ExoPlayerLayoutBinding
 import video.api.player.interfaces.IExoPlayerBasedPlayerView
@@ -45,13 +46,14 @@ class ApiVideoExoPlayerView @JvmOverloads constructor(
             field = value
         }
 
-    /**
-     * Shows or hides the control buttons
-     */
-    var showControls: Boolean
-        get() = styledPlayerView.useController
+    var scaleToFill: Boolean
+        get() = styledPlayerView.resizeMode == AspectRatioFrameLayout.RESIZE_MODE_ZOOM
         set(value) {
-            styledPlayerView.useController = value
+            if (value) {
+                styledPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+            } else {
+                styledPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
+            }
         }
 
     /**
@@ -67,6 +69,15 @@ class ApiVideoExoPlayerView @JvmOverloads constructor(
                 styledPlayerView.setShowSubtitleButton(false)
             }
             field = value
+        }
+
+    /**
+     * Shows or hides the control buttons
+     */
+    var showControls: Boolean
+        get() = styledPlayerView.useController
+        set(value) {
+            styledPlayerView.useController = value
         }
 
     init {
