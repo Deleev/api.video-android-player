@@ -75,6 +75,15 @@ class ApiVideoExoPlayerView @JvmOverloads constructor(
         }
 
     /**
+     * Legacy compatibility accessor kept for clients still toggling the old "scale to fill" flag.
+     */
+    var scaleToFill: Boolean
+        get() = viewFit == ViewFit.Zoom
+        set(value) {
+            viewFit = if (value) ViewFit.Zoom else ViewFit.Fill
+        }
+
+    /**
      * Sets or gets how the video is fitted in its parent view
      */
     var viewFit: ViewFit
