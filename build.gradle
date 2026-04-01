@@ -7,8 +7,8 @@ buildscript {
         targetSdk = 34
 
         // Kotlin
-        kotlinVersion = "1.9.10"
-        dokkaVersion = "1.9.10"
+        kotlinVersion = "2.1.21"
+        dokkaVersion = "1.9.20"
 
         // Example
         versionCode = properties['VERSION_CODE'].toInteger()
@@ -20,9 +20,10 @@ buildscript {
     }
 }
 plugins {
-    id 'com.android.application' version '8.5.1' apply false
-    id 'com.android.library' version '8.5.1' apply false
+    id 'com.android.application' version '8.13.0' apply false
+    id 'com.android.library' version '8.13.0' apply false
     id 'org.jetbrains.kotlin.android' version "$kotlinVersion" apply false
+    id 'org.jetbrains.kotlin.plugin.compose' version "$kotlinVersion" apply false
     id 'org.jetbrains.dokka' version "$dokkaVersion"
 }
 
